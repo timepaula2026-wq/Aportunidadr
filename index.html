@@ -169,6 +169,19 @@ h1 em{font-style:normal;color:#f1ca70}
 @media (max-width:800px){
   .paula-wrap{margin-top:-30px!important;height:clamp(380px,110vw,560px)!important;width:min(100%,520px)!important}
 }
+
+/* Layout do topo: foto centralizada e alta; título sobre a parte de baixo da foto */
+.hero-grid{display:flex!important;flex-direction:column!important;align-items:center!important;gap:0!important;min-height:0!important;position:relative!important}
+.paula-wrap{order:-1!important;position:relative!important;inset:auto!important;right:auto!important;top:auto!important;width:min(100%,600px)!important;height:clamp(460px,60vw,680px)!important;margin:0 auto!important;display:flex!important;align-items:flex-end!important;justify-content:center!important;opacity:1!important;z-index:1!important;min-height:0!important}
+.paula{height:100%!important;width:auto!important;max-width:100%!important;max-height:none!important;object-fit:contain!important;object-position:center bottom!important}
+.copy{order:0!important;position:relative!important;z-index:2!important;width:100%!important;max-width:820px!important;margin:-190px auto 0!important;padding:0 16px!important;min-height:0!important;text-align:center!important}
+.copy .eyebrow{text-align:center!important}
+.copy h1{text-align:center!important;margin-left:auto!important;margin-right:auto!important;text-shadow:0 4px 30px #000c}
+.copy .lead{margin-left:auto!important;margin-right:auto!important;text-align:center!important}
+@media (max-width:800px){
+  .paula-wrap{width:100%!important;height:clamp(340px,96vw,480px)!important}
+  .copy{margin-top:-120px!important}
+}
 </style>
 
 </head>
