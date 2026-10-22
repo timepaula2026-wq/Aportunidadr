@@ -162,6 +162,13 @@ h1 em{font-style:normal;color:#f1ca70}
 .viewer-points li{position:relative;padding-left:24px;margin:7px 0;color:#f2eded;font-size:15px;line-height:1.5}
 .viewer-points li:before{content:"✓";position:absolute;left:0;top:0;color:var(--gold2);font-weight:700}
 .viewer-when{font-size:14px;color:var(--gold2);margin:12px 0 0;font-weight:600;line-height:1.5}
+
+/* Foto da Paula: mais alta e maior (sobrescreve regras anteriores) */
+.paula-wrap{margin-top:-150px!important;height:clamp(520px,64vw,800px)!important;width:min(100%,660px)!important;align-items:flex-start!important;overflow:visible!important}
+.paula{height:100%!important;width:100%!important;max-height:none!important;object-fit:contain!important;object-position:center top!important}
+@media (max-width:800px){
+  .paula-wrap{margin-top:-30px!important;height:clamp(380px,110vw,560px)!important;width:min(100%,520px)!important}
+}
 </style>
 
 </head>
