@@ -189,6 +189,12 @@ h1 em{font-style:normal;color:#f1ca70}
   .paula-wrap{margin-top:-110px!important;height:clamp(380px,100vw,520px)!important;width:100%!important}
   .copy{margin-top:-120px!important}
 }
+
+/* Caixa translúcida atrás do texto do topo, para ficar legível sobre a foto */
+.copy{background:rgba(8,8,9,.68)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(215,166,74,.35)!important;border-radius:16px!important;padding:24px 28px!important;box-shadow:0 10px 40px rgba(0,0,0,.45)}
+@media (max-width:800px){
+  .copy{padding:18px 16px!important}
+}
 </style>
 
 </head>
