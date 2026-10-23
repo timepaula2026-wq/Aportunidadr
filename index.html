@@ -229,6 +229,12 @@ h1 em{font-style:normal;color:#f1ca70}
   .paula{transform:scale(1.6)!important;transform-origin:40% 8%!important}
   .copy{margin-top:-10px!important}
 }
+/* mobile hero v5: foto inteira, texto começa depois da foto (só mobile) */
+@media (max-width:800px){
+  .paula-wrap{margin-top:0!important;height:auto!important;max-height:none!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important;align-items:flex-start!important}
+  .paula{transform:none!important;width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;object-position:center top!important;position:static!important;left:auto!important;top:auto!important}
+  .copy{margin-top:0!important}
+}
 </style>
 
 </head>
