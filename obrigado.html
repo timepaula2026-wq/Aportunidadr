@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Obrigada | A Oportunidade</title>
+<style>
+  :root{--gold:#d7a64a;--gold2:#f0c96a;--bg:#08080a;--text:#f2eded;--muted:#c9c3c3}
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  body{display:flex;align-items:center;justify-content:center;padding:24px 16px;min-height:100vh}
+  .card{width:100%;max-width:520px;background:rgba(8,8,9,.8);border:1px solid rgba(215,166,74,.35);border-radius:16px;padding:32px 28px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.45)}
+  .brand{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);font-weight:800;margin:0 0 18px}
+  .check{width:56px;height:56px;margin:0 auto 18px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold2);font-size:28px}
+  h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:30px;line-height:1.15;margin:0 0 14px;color:#fff}
+  p{font-size:16px;line-height:1.55;color:var(--muted);margin:0 0 14px}
+  .highlight{color:var(--gold2);font-weight:700}
+  .box{margin:20px 0 6px;padding:16px;border:1px solid rgba(215,166,74,.25);border-radius:12px;background:rgba(215,166,74,.06)}
+  .box p{margin:0;color:var(--text)}
+  .back{display:inline-block;margin-top:18px;color:var(--gold2);text-decoration:none;font-weight:700;font-size:14px;letter-spacing:.06em}
+  .back:hover{text-decoration:underline}
+  @media (max-width:480px){h1{font-size:26px}.card{padding:26px 20px}}
+</style>
+</head>
+<body>
+  <main class="card">
+    <p class="brand">Time Paula Batista · A Oportunidade</p>
+    <div class="check" aria-hidden="true">✓</div>
+    <h1 id="titulo">Recebemos o seu pedido!</h1>
+    <p id="resumo">Obrigada por se interessar pela apresentação.</p>
+    <div class="box">
+      <p>O <span class="highlight">link para entrar na sala</span> será enviado para o seu <span class="highlight">WhatsApp</span>. Fique atento(a) às mensagens.</p>
+    </div>
+    <a class="back" href="index.html">Voltar para o início</a>
+  </main>
+  <script>
+    (function(){
+      try{
+        var p=new URLSearchParams(location.search);
+        var n=(p.get('n')||'').trim();
+        var d=(p.get('d')||'').trim();
+        if(n){document.getElementById('titulo').textContent='Recebemos o seu pedido, '+n+'!';}
+        if(d){document.getElementById('resumo').textContent='Apresentação: '+d+'. Obrigada por se interessar.';}
+      }catch(e){}
+    })();
+  </script>
+</body>
+</html>

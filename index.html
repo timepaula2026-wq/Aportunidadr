@@ -343,9 +343,11 @@ form.addEventListener('submit',async(e)=>{
       consentimento:f.get('consentimento')==='on',data,horario})});
     const j=await r.json();
     if(!r.ok){mostrarStatus(j.error||'Não foi possível concluir o cadastro. Tente novamente.');return;}
+    const label=datasEl.options[datasEl.selectedIndex]?.text||'';
+    const primeiro=String(f.get('nome')||'').trim().split(/\s+/)[0]||'';
     form.reset();
-    carregarDatas();
-    mostrarStatus(j.duplicado?'Você já está cadastrado(a) para esta data. Fique atento(a) ao WhatsApp.':'Cadastro recebido! Fique atento(a) ao WhatsApp para receber o convite.');
+    location.href='obrigado.html?'+new URLSearchParams({n:primeiro,d:label}).toString();
+    return;
   }catch(err){
     mostrarStatus('Sem conexão agora. Tente novamente em instantes.');
   }finally{
