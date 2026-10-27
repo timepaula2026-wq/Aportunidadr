@@ -2,26 +2,15 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entrevista confirmada · A Oportunidade</title>
 <meta name="robots" content="noindex">
-<title>Obrigada | A Oportunidade</title>
-<style>
-  :root{--gold:#d7a64a;--gold2:#f0c96a;--bg:#08080a;--text:#f2eded;--muted:#c9c3c3}
-  *{box-sizing:border-box}
-  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-  body{display:flex;align-items:center;justify-content:center;padding:24px 16px;min-height:100vh}
-  .card{width:100%;max-width:520px;background:rgba(8,8,9,.8);border:1px solid rgba(215,166,74,.35);border-radius:16px;padding:32px 28px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.45)}
-  .brand{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);font-weight:800;margin:0 0 18px}
-  .check{width:56px;height:56px;margin:0 auto 18px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold2);font-size:28px}
-  h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:30px;line-height:1.15;margin:0 0 14px;color:#fff}
-  p{font-size:16px;line-height:1.55;color:var(--muted);margin:0 0 14px}
-  .highlight{color:var(--gold2);font-weight:700}
-  .box{margin:20px 0 6px;padding:16px;border:1px solid rgba(215,166,74,.25);border-radius:12px;background:rgba(215,166,74,.06)}
-  .box p{margin:0;color:var(--text)}
-  .back{display:inline-block;margin-top:18px;color:var(--gold2);text-decoration:none;font-weight:700;font-size:14px;letter-spacing:.06em}
-  .back:hover{text-decoration:underline}
-  @media (max-width:480px){h1{font-size:26px}.card{padding:26px 20px}}
-</style>
+<meta name="theme-color" content="#FAF6F2">
+<link rel="icon" href="assets/logo-pb.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
 <!-- Meta Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -31,27 +20,81 @@ fbq('track','PageView');
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4621300068191321&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel -->
 </head>
-<body>
-  <main class="card">
-    <p class="brand">Time Paula Batista · A Oportunidade</p>
-    <div class="check" aria-hidden="true">✓</div>
-    <h1 id="titulo">Recebemos o seu pedido!</h1>
-    <p id="resumo">Obrigada por se interessar pela entrevista.</p>
-    <div class="box">
-      <p>O <span class="highlight">link para entrar na sala</span> será enviado para o seu <span class="highlight">WhatsApp</span>. Fique atento(a) às mensagens.</p>
-    </div>
-    <a class="back" href="index.html">Voltar para o início</a>
-  </main>
-  <script>
-    (function(){
-      try{
-        var p=new URLSearchParams(location.search);
-        var n=(p.get('n')||'').trim();
-        var d=(p.get('d')||'').trim();
-        if(n){document.getElementById('titulo').textContent='Recebemos o seu pedido, '+n+'!';}
-        if(d){try{fbq('track','Schedule',{content_name:'A Oportunidade'});}catch(e){}document.getElementById('resumo').textContent='Entrevista: '+d+'. Obrigada por se interessar.';}
-      }catch(e){}
-    })();
-  </script>
+<body data-page="obrigado" class="page-sched">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Time Paula Batista"><img src="assets/logo-pb.png" alt="Time Paula Batista" width="526" height="358"></a>
+    <span class="header-tag">Entrevista <b>confirmada</b></span>
+  </div>
+</header>
+
+<main class="wrap thanks">
+  <nav class="progress" aria-label="Etapas" style="padding-top:0;margin-bottom:24px">
+    <span class="p done"><b>✓</b>Seus dados</span><span class="bar"></span>
+    <span class="p done"><b>✓</b>Dia e horário</span><span class="bar"></span>
+    <span class="p done"><b>✓</b>Confirmação</span>
+  </nav>
+
+  <div class="ty-hero">
+    <div class="ty-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+    <h1 id="tyTitle">Entrevista confirmada.</h1>
+    <p>Você acabou de fazer o que a maioria não faz: dar o primeiro passo. Agora siga estes passos para chegar preparado.</p>
+  </div>
+  <div class="ty-card" id="tyCard" hidden><div class="cal-ic"><small id="tyMes"></small><b id="tyDia"></b></div><div><strong id="tyData"></strong><span id="tyHora"></span></div></div>
+
+  <div class="next">
+    <h2>Seus próximos passos</h2>
+    <ol>
+      <li>
+        <span class="num">1</span>
+        <div>
+          <h3>Fique atento ao WhatsApp</h3>
+          <p>O link para entrar na sala será enviado para o seu WhatsApp. É por lá que chegam os lembretes.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">2</span>
+        <div>
+          <h3>Separe 30 minutos sem interrupções</h3>
+          <p>Um lugar tranquilo, celular carregado ou computador com câmera e uma boa internet.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">3</span>
+        <div>
+          <h3>Venha com as suas perguntas</h3>
+          <p>Sobre a rotina, a remuneração, como começar ao lado do seu trabalho atual. Essa conversa é sua.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <div class="note">
+    <picture><source srcset="assets/paula-obrigado.webp" type="image/webp"><img src="assets/paula-obrigado.jpg" alt="Paula Batista" width="800" height="1200"></picture>
+    <p>“Coragem não é ter certeza. É dar o primeiro passo. Você deu o seu. Agora eu e o meu time estamos te esperando.”<span>Paula Batista</span></p>
+  </div>
+
+  <p class="resched">Precisa remarcar? É só responder a nossa mensagem no WhatsApp.</p>
+</main>
+
+<script>
+(function(){
+  var meses=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  try{
+    var p=new URLSearchParams(location.search);
+    var n=(p.get('n')||'').trim(), d=(p.get('d')||'').trim();
+    if(n){document.getElementById('tyTitle').textContent='Entrevista confirmada, '+n+'.';}
+    if(d){
+      var md=d.match(/(\d{2})\/(\d{2})/), mh=d.match(/(\d{1,2}h\d{0,2})/);
+      if(md){document.getElementById('tyMes').textContent=meses[parseInt(md[2],10)-1]||'';document.getElementById('tyDia').textContent=md[1];}
+      document.getElementById('tyData').textContent=d.split(' às ')[0].replace(/,\s*\d{2}\/\d{2}$/,'');
+      if(mh){document.getElementById('tyHora').textContent='às '+mh[1]+' · on-line, 30 minutos';}
+      document.getElementById('tyCard').hidden=false;
+      try{fbq('track','Schedule',{content_name:'A Oportunidade'});}catch(e){}
+    }
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
