@@ -390,6 +390,10 @@ form.addEventListener('submit',async(e)=>{
     if(!r.ok){mostrarStatus(j.error||'Não foi possível concluir o cadastro. Tente novamente.');return;}
     const label=datasEl.options[datasEl.selectedIndex]?.text||'';
     const primeiro=String(f.get('nome')||'').trim().split(/\s+/)[0]||'';
+    if(j.duplicado){
+      mostrarStatus('Você já está cadastrado(a) para essa data — seu convite pelo WhatsApp já foi enviado. Se quiser trocar o dia, escolha outra data e envie de novo.');
+      return;
+    }
     form.reset();
     location.href='../obrigado.html?'+new URLSearchParams({n:primeiro,d:label}).toString();
   }catch(err){
