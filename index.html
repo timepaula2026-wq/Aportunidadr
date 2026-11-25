@@ -157,7 +157,10 @@ fbq('track','PageView');
             </select>
             <p class="err">Escolha uma opção.</p>
           </div>
-          <p class="form-status" id="dispoStatus" role="alert" style="margin-top:6px">Que pena! Para seguir com A Oportunidade é preciso ter disponibilidade em horário comercial para os treinamentos. Mas você ainda pode fazer parte: indique pessoas interessadas em consórcio e ganhe como indicador(a) de vendas.</p>
+          <div class="form-status" id="dispoStatus" role="alert" style="margin-top:6px">
+            <p style="margin:0">Que pena! Para seguir com A Oportunidade é preciso ter disponibilidade em horário comercial para os treinamentos. Mas você ainda pode fazer parte: indique pessoas interessadas em consórcio e ganhe como indicador(a) de vendas.</p>
+            <a class="btn btn-block" id="linkGrupoIndicadores" href="#" target="_blank" rel="noopener" style="margin-top:14px"><span>Entrar no grupo de indicadores</span></a>
+          </div>
           <div id="etapaAgendamento">
             <div class="field full" style="margin-top:6px">
               <label for="datas">Dia e horário da entrevista</label>
@@ -391,8 +394,13 @@ const statusEl=document.getElementById('formStatus');
 const btn=form.querySelector('button[type=submit]');
 const btnTexto=btn.querySelector('span');
 function mostrarStatus(t){statusEl.textContent=t;statusEl.classList.add('show');}
+// TODO: assim que o grupo de WhatsApp de indicadores existir, troque a linha abaixo pelo link real
+// (ex.: 'https://chat.whatsapp.com/XXXXXXXXXXXXXXXXXXXXXX') e publique de novo.
+const LINK_GRUPO_INDICADORES='';
 const dispoEl=document.getElementById('disponibilidade');
 const dispoStatusEl=document.getElementById('dispoStatus');
+const linkGrupoEl=document.getElementById('linkGrupoIndicadores');
+if(LINK_GRUPO_INDICADORES){linkGrupoEl.href=LINK_GRUPO_INDICADORES;}else{linkGrupoEl.style.display='none';}
 const etapaAgendamentoEl=document.getElementById('etapaAgendamento');
 function aplicarDisponibilidade(){
   const semDisponibilidade=dispoEl.value==='nao';
