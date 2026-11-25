@@ -149,16 +149,28 @@ fbq('track','PageView');
             </div>
           </div>
           <div class="field full" style="margin-top:6px">
-            <label for="datas">Dia e horário da entrevista</label>
-            <select class="select" id="datas" name="datas" required disabled>
-              <option value="">Carregando datas…</option>
+            <label for="disponibilidade">Você tem disponibilidade em horário comercial para treinamentos?</label>
+            <select class="select" id="disponibilidade" name="disponibilidade" required>
+              <option value="">Selecione</option>
+              <option value="sim">Sim</option>
+              <option value="nao">Não</option>
             </select>
-            <p class="err">Escolha um dia e horário.</p>
+            <p class="err">Escolha uma opção.</p>
           </div>
-          <label class="form-note" style="display:flex;gap:10px;align-items:flex-start;margin-top:14px"><input type="checkbox" name="consentimento" required style="margin-top:3px"><span>Autorizo o contato pelo WhatsApp para receber informações e o convite desta entrevista. Consulte a política de privacidade do site.</span></label>
-          <button class="btn btn-block" type="submit" style="margin-top:18px"><span>Escolher dia e horário</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          <p class="form-status" id="formStatus" role="alert"></p>
-          <p class="form-note">Leva 30 segundos. Ao continuar, você autoriza o contato pelo WhatsApp sobre a sua entrevista. Política de privacidade.</p>
+          <p class="form-status" id="dispoStatus" role="alert" style="margin-top:6px">Que pena! Para seguir com A Oportunidade é preciso ter disponibilidade em horário comercial para os treinamentos. Mas você ainda pode fazer parte: indique pessoas interessadas em consórcio e ganhe como indicador(a) de vendas.</p>
+          <div id="etapaAgendamento">
+            <div class="field full" style="margin-top:6px">
+              <label for="datas">Dia e horário da entrevista</label>
+              <select class="select" id="datas" name="datas" required disabled>
+                <option value="">Carregando datas…</option>
+              </select>
+              <p class="err">Escolha um dia e horário.</p>
+            </div>
+            <label class="form-note" style="display:flex;gap:10px;align-items:flex-start;margin-top:14px"><input type="checkbox" name="consentimento" required style="margin-top:3px"><span>Autorizo o contato pelo WhatsApp para receber informações e o convite desta entrevista. Consulte a política de privacidade do site.</span></label>
+            <button class="btn btn-block" type="submit" style="margin-top:18px"><span>Escolher dia e horário</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <p class="form-status" id="formStatus" role="alert"></p>
+            <p class="form-note">Leva 30 segundos. Ao continuar, você autoriza o contato pelo WhatsApp sobre a sua entrevista. Política de privacidade.</p>
+          </div>
         </form>
       </div>
     </div>
@@ -379,6 +391,18 @@ const statusEl=document.getElementById('formStatus');
 const btn=form.querySelector('button[type=submit]');
 const btnTexto=btn.querySelector('span');
 function mostrarStatus(t){statusEl.textContent=t;statusEl.classList.add('show');}
+const dispoEl=document.getElementById('disponibilidade');
+const dispoStatusEl=document.getElementById('dispoStatus');
+const etapaAgendamentoEl=document.getElementById('etapaAgendamento');
+function aplicarDisponibilidade(){
+  const semDisponibilidade=dispoEl.value==='nao';
+  dispoStatusEl.classList.toggle('show',semDisponibilidade);
+  etapaAgendamentoEl.style.display=semDisponibilidade?'none':'';
+  datasEl.disabled=semDisponibilidade?true:datasEl.disabled;
+  datasEl.required=!semDisponibilidade;
+  form.querySelector('input[name=consentimento]').required=!semDisponibilidade;
+}
+dispoEl.addEventListener('change',aplicarDisponibilidade);
 async function carregarDatas(){
   try{
     const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'proximas'})});
@@ -397,6 +421,8 @@ async function carregarDatas(){
 form.addEventListener('submit',async(e)=>{
   e.preventDefault();
   statusEl.classList.remove('show');
+  if(!dispoEl.value){dispoEl.reportValidity();return;}
+  if(dispoEl.value==='nao'){return;}
   if(!datasEl.value){mostrarStatus('Escolha um dia e horário para continuar.');return;}
   const [data,horario]=datasEl.value.split('|');
   const f=new FormData(form);
