@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Indique e ganhe · Time Paula Batista</title>
+<meta name="description" content="Não tem disponibilidade para entrar no Time Paula Batista agora? Indique pessoas interessadas em comprar consórcio e ganhe por isso.">
+<meta name="theme-color" content="#FAF6F2">
+<link rel="icon" href="assets/logo-pb.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','4621300068191321');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4621300068191321&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "z4ub8dftwh");
+</script>
+<!-- End Microsoft Clarity -->
+</head>
+<body data-page="indicador">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Time Paula Batista"><img src="assets/logo-pb.png" alt="Time Paula Batista" width="526" height="358"></a>
+    <span class="header-tag">Programa de <b>indicação</b></span>
+  </div>
+</header>
+
+<section class="form-sec" style="padding:40px 0 64px">
+  <div class="wrap">
+    <div class="form-wrap" style="max-width:640px;margin:0 auto">
+      <div style="margin-bottom:22px">
+        <h1 style="font-size:clamp(26px,4vw,34px);margin-bottom:10px">Indique e ganhe</h1>
+        <p class="sub" style="font-size:15.5px;color:var(--muted)">Sem tempo pra entrar no time agora, mas conhece alguém que quer economizar comprando um bem com consórcio? Indique essa pessoa pra gente. Se ela fechar, você ganha por isso.</p>
+      </div>
+
+      <form class="form-card" id="indicadorForm" novalidate>
+        <h2 style="font-size:19px">Seus dados</h2>
+        <div class="fields two" style="margin-top:12px">
+          <div class="field">
+            <label for="nomeIndicador">Seu nome completo</label>
+            <input class="input" id="nomeIndicador" name="nomeIndicador" autocomplete="name" placeholder="Como você se chama?" required>
+            <p class="err">Digite seu nome e sobrenome.</p>
+          </div>
+          <div class="field">
+            <label for="whatsappIndicador">Seu WhatsApp</label>
+            <input class="input" id="whatsappIndicador" name="whatsappIndicador" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(00) 00000-0000" required>
+            <p class="err">Digite um WhatsApp válido com DDD.</p>
+          </div>
+        </div>
+
+        <h2 style="font-size:19px;margin-top:22px">Quem você quer indicar</h2>
+        <div class="fields two" style="margin-top:12px">
+          <div class="field">
+            <label for="nomeIndicado">Nome da pessoa indicada</label>
+            <input class="input" id="nomeIndicado" name="nomeIndicado" placeholder="Nome completo" required>
+            <p class="err">Informe o nome da pessoa indicada.</p>
+          </div>
+          <div class="field">
+            <label for="whatsappIndicado">WhatsApp da pessoa indicada</label>
+            <input class="input" id="whatsappIndicado" name="whatsappIndicado" type="tel" inputmode="tel" placeholder="(00) 00000-0000" required>
+            <p class="err">Digite um WhatsApp válido com DDD.</p>
+          </div>
+          <div class="field full">
+            <label for="cidadeIndicado">Cidade / UF da pessoa indicada <small>(opcional)</small></label>
+            <input class="input" id="cidadeIndicado" name="cidadeIndicado" placeholder="Ex.: Curitiba / PR">
+          </div>
+          <div class="field full">
+            <label for="observacao">O que essa pessoa pretende comprar? <small>(opcional)</small></label>
+            <input class="input" id="observacao" name="observacao" placeholder="Ex.: carro, imóvel, reforma…">
+          </div>
+        </div>
+
+        <label class="form-note" style="display:flex;gap:10px;align-items:flex-start;margin-top:18px"><input type="checkbox" name="consentimento" required style="margin-top:3px"><span>Autorizo o contato pelo WhatsApp sobre essa indicação. Consulte a política de privacidade do site.</span></label>
+        <button class="btn btn-block" type="submit" style="margin-top:18px"><span>Enviar indicação</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <p class="form-status" id="formStatus" role="alert"></p>
+      </form>
+
+      <div class="form-card" id="sucessoCard" hidden style="margin-top:18px;text-align:center">
+        <h2 style="font-size:20px">Indicação enviada!</h2>
+        <p class="sub">Obrigada! Nosso time vai entrar em contato com a pessoa indicada em breve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const API='https://fhfphlqrgtabkiqoywea.supabase.co/functions/v1/indicacao-consorcio-cadastro';
+const form=document.getElementById('indicadorForm');
+const statusEl=document.getElementById('formStatus');
+const sucessoEl=document.getElementById('sucessoCard');
+const btn=form.querySelector('button[type=submit]');
+const btnTexto=btn.querySelector('span');
+function mostrarStatus(t){statusEl.textContent=t;statusEl.classList.add('show');}
+form.addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  statusEl.classList.remove('show');
+  const f=new FormData(form);
+  btn.disabled=true;btnTexto.textContent='Enviando…';
+  try{
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      action:'cadastrar',
+      nomeIndicador:f.get('nomeIndicador'),
+      whatsappIndicador:f.get('whatsappIndicador'),
+      nomeIndicado:f.get('nomeIndicado'),
+      whatsappIndicado:f.get('whatsappIndicado'),
+      cidadeIndicado:f.get('cidadeIndicado'),
+      observacao:f.get('observacao')
+    })});
+    const j=await r.json();
+    if(!r.ok){mostrarStatus(j.error||'Não foi possível enviar agora. Tente novamente.');return;}
+    try{fbq('track','Lead',{content_name:'Indicador Consorcio'});}catch(e){}
+    form.hidden=true;
+    sucessoEl.hidden=false;
+    sucessoEl.scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(err){
+    mostrarStatus('Sem conexão agora. Tente novamente em instantes.');
+  }finally{
+    btn.disabled=false;btnTexto.textContent='Enviar indicação';
+  }
+});
+</script>
+</body>
+</html>
