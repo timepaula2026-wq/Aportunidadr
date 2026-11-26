@@ -4,9 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Indique e ganhe · Time Paula Batista</title>
-<meta name="description" content="Não tem disponibilidade para entrar no Time Paula Batista agora? Indique pessoas interessadas em comprar consórcio e ganhe por isso.">
+<meta name="description" content="Não tem disponibilidade para entrar no Time Paula Batista agora? Conheça a Ademicon, o Time Paula Batista, o consórcio e indique pessoas interessadas — você ganha 1% de comissão em cada venda.">
 <meta name="theme-color" content="#FAF6F2">
 <link rel="icon" href="assets/logo-pb.png">
+<meta property="og:title" content="Indique e ganhe 1% de comissão · Time Paula Batista">
+<meta property="og:description" content="Indique quem quer comprar um bem com consórcio Ademicon e ganhe 1% de comissão em cada venda.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -34,67 +36,176 @@ fbq('track','PageView');
 <header class="site-header">
   <div class="wrap">
     <a class="logo" href="index.html" aria-label="Time Paula Batista"><img src="assets/logo-pb.png" alt="Time Paula Batista" width="526" height="358"></a>
-    <span class="header-tag">Programa de <b>indicação</b></span>
+    <a class="header-tag" href="painel-indicador.html">Já indiquei · <b>ver meu painel</b></a>
   </div>
 </header>
 
-<section class="form-sec" style="padding:40px 0 64px">
-  <div class="wrap">
-    <div class="form-wrap" style="max-width:640px;margin:0 auto">
-      <div style="margin-bottom:22px">
-        <h1 style="font-size:clamp(26px,4vw,34px);margin-bottom:10px">Indique e ganhe</h1>
-        <p class="sub" style="font-size:15.5px;color:var(--muted)">Sem tempo pra entrar no time agora, mas conhece alguém que quer economizar comprando um bem com consórcio? Indique essa pessoa pra gente. Se ela fechar, você ganha por isso.</p>
+<main>
+  <!-- INTRO -->
+  <section style="padding:44px 0 36px;background:linear-gradient(180deg,#fff 0%,#fff 55%,var(--bg-warm) 100%)">
+    <div class="wrap" style="max-width:760px">
+      <span class="hd-tag" style="display:inline-block;margin-bottom:14px">Programa de indicação</span>
+      <h1 style="font-size:clamp(28px,4.5vw,42px);line-height:1.15;margin-bottom:16px">Indique e ganhe <span style="color:var(--red)">1% de comissão</span> em cada venda</h1>
+      <p style="font-size:17px;color:var(--ink-2);line-height:1.6;margin-bottom:22px">Sem tempo pra entrar no Time Paula Batista agora? Sem problema. Você pode indicar pessoas que querem comprar um bem com consórcio — e ganha comissão sempre que a indicação virar venda.</p>
+      <a class="btn" href="#indicar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Começar a indicar</span></a>
+    </div>
+  </section>
+
+  <!-- O QUE É A ADEMICON -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>O que é a Ademicon</h2>
       </div>
-
-      <form class="form-card" id="indicadorForm" novalidate>
-        <h2 style="font-size:19px">Seus dados</h2>
-        <div class="fields two" style="margin-top:12px">
-          <div class="field">
-            <label for="nomeIndicador">Seu nome completo</label>
-            <input class="input" id="nomeIndicador" name="nomeIndicador" autocomplete="name" placeholder="Como você se chama?" required>
-            <p class="err">Digite seu nome e sobrenome.</p>
-          </div>
-          <div class="field">
-            <label for="whatsappIndicador">Seu WhatsApp</label>
-            <input class="input" id="whatsappIndicador" name="whatsappIndicador" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(00) 00000-0000" required>
-            <p class="err">Digite um WhatsApp válido com DDD.</p>
-          </div>
+      <div class="how-grid">
+        <div class="how">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div>
+          <h3>A maior administradora independente do Brasil</h3>
+          <p>A Ademicon é a maior administradora de consórcios independente do país, com milhões de cotas administradas e décadas de experiência ajudando pessoas a conquistar bens sem pagar os juros de um financiamento.</p>
         </div>
-
-        <h2 style="font-size:19px;margin-top:22px">Quem você quer indicar</h2>
-        <div class="fields two" style="margin-top:12px">
-          <div class="field">
-            <label for="nomeIndicado">Nome da pessoa indicada</label>
-            <input class="input" id="nomeIndicado" name="nomeIndicado" placeholder="Nome completo" required>
-            <p class="err">Informe o nome da pessoa indicada.</p>
-          </div>
-          <div class="field">
-            <label for="whatsappIndicado">WhatsApp da pessoa indicada</label>
-            <input class="input" id="whatsappIndicado" name="whatsappIndicado" type="tel" inputmode="tel" placeholder="(00) 00000-0000" required>
-            <p class="err">Digite um WhatsApp válido com DDD.</p>
-          </div>
-          <div class="field full">
-            <label for="cidadeIndicado">Cidade / UF da pessoa indicada <small>(opcional)</small></label>
-            <input class="input" id="cidadeIndicado" name="cidadeIndicado" placeholder="Ex.: Curitiba / PR">
-          </div>
-          <div class="field full">
-            <label for="observacao">O que essa pessoa pretende comprar? <small>(opcional)</small></label>
-            <input class="input" id="observacao" name="observacao" placeholder="Ex.: carro, imóvel, reforma…">
-          </div>
+        <div class="how">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+          <h3>Imóvel, carro, moto, serviços e mais</h3>
+          <p>Cartas de consórcio para quem quer planejar a compra de um imóvel, veículo ou outros bens, de forma organizada e sem juros.</p>
         </div>
-
-        <label class="form-note" style="display:flex;gap:10px;align-items:flex-start;margin-top:18px"><input type="checkbox" name="consentimento" required style="margin-top:3px"><span>Autorizo o contato pelo WhatsApp sobre essa indicação. Consulte a política de privacidade do site.</span></label>
-        <button class="btn btn-block" type="submit" style="margin-top:18px"><span>Enviar indicação</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-        <p class="form-status" id="formStatus" role="alert"></p>
-      </form>
-
-      <div class="form-card" id="sucessoCard" hidden style="margin-top:18px;text-align:center">
-        <h2 style="font-size:20px">Indicação enviada!</h2>
-        <p class="sub">Obrigada! Nosso time vai entrar em contato com a pessoa indicada em breve.</p>
       </div>
     </div>
+  </section>
+
+  <!-- O QUE É O TIME PAULA BATISTA -->
+  <section style="background:var(--bg-warm)">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>O que é o Time Paula Batista</h2>
+      </div>
+      <div class="how-grid">
+        <div class="how">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14a6.5 6.5 0 0 1 3 6"/></svg></div>
+          <h3>Liderado por Paula Batista</h3>
+          <p>O Time Paula Batista é uma equipe de consultores de consórcio Ademicon, liderada pela Paula, com mais de 250 pessoas e 10 unidades em diferentes cidades.</p>
+        </div>
+        <div class="how">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+          <h3>Resultado de verdade</h3>
+          <p>Só em março, o time fechou R$ 90 milhões em consórcios. É esse time que recebe e trabalha cada pessoa que você indicar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE É CONSÓRCIO -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>O que é consórcio, afinal?</h2>
+      </div>
+      <div class="how-grid">
+        <div class="how">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg></div>
+          <h3>Um jeito de comprar sem juros</h3>
+          <p>No consórcio, um grupo de pessoas se reúne para juntar dinheiro todo mês. Cada mês, uma ou mais pessoas do grupo são contempladas (por sorteio ou lance) e recebem a carta de crédito para comprar o bem — sem pagar os juros de um financiamento.</p>
+        </div>
+        <div class="how">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3>Planejamento, não urgência</h3>
+          <p>É a opção ideal pra quem pode planejar a compra de um imóvel, carro ou outro bem com mais tranquilidade — pagando parcelas menores do que num financiamento tradicional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA A INDICAÇÃO -->
+  <section style="background:var(--bg-warm)">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Como funciona indicar</h2>
+      </div>
+      <div class="how-grid">
+        <div class="how">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></div>
+          <h3>1. Você indica</h3>
+          <p>Preencha o nome e o WhatsApp de quem você conhece que quer comprar um bem com consórcio.</p>
+        </div>
+        <div class="how">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3>2. Nosso time entra em contato</h3>
+          <p>Um consultor do Time Paula Batista fala com a pessoa indicada. Você acompanha o retorno de cada indicação no seu painel.</p>
+        </div>
+        <div class="how">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h3>3. Se virar venda, você ganha 1%</h3>
+          <p>Toda indicação que fechar negócio gera 1% de comissão pra você, calculada sobre o valor da venda. Acompanhe tudo no seu painel.</p>
+        </div>
+      </div>
+      <p class="how-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Sem limite de indicações. Quanto mais pessoas você indicar, mais chances de ganhar.</p>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO -->
+  <section class="form-sec" id="indicar">
+    <div class="wrap">
+      <div class="form-wrap" style="max-width:640px;margin:0 auto">
+        <form class="form-card" id="indicadorForm" novalidate>
+          <h2 id="inscricao" style="scroll-margin-top:24px">Comece a indicar</h2>
+          <p class="sub">Preencha seus dados e os da pessoa que você quer indicar.</p>
+
+          <h3 style="font-size:16px;margin-top:4px">Seus dados</h3>
+          <div class="fields two" style="margin-top:10px">
+            <div class="field">
+              <label for="nomeIndicador">Seu nome completo</label>
+              <input class="input" id="nomeIndicador" name="nomeIndicador" autocomplete="name" placeholder="Como você se chama?" required>
+              <p class="err">Digite seu nome e sobrenome.</p>
+            </div>
+            <div class="field">
+              <label for="whatsappIndicador">Seu WhatsApp</label>
+              <input class="input" id="whatsappIndicador" name="whatsappIndicador" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(00) 00000-0000" required>
+              <p class="err">Digite um WhatsApp válido com DDD.</p>
+            </div>
+          </div>
+
+          <h3 style="font-size:16px;margin-top:22px">Quem você quer indicar</h3>
+          <div class="fields two" style="margin-top:10px">
+            <div class="field">
+              <label for="nomeIndicado">Nome da pessoa indicada</label>
+              <input class="input" id="nomeIndicado" name="nomeIndicado" placeholder="Nome completo" required>
+              <p class="err">Informe o nome da pessoa indicada.</p>
+            </div>
+            <div class="field">
+              <label for="whatsappIndicado">WhatsApp da pessoa indicada</label>
+              <input class="input" id="whatsappIndicado" name="whatsappIndicado" type="tel" inputmode="tel" placeholder="(00) 00000-0000" required>
+              <p class="err">Digite um WhatsApp válido com DDD.</p>
+            </div>
+            <div class="field full">
+              <label for="cidadeIndicado">Cidade / UF da pessoa indicada <small>(opcional)</small></label>
+              <input class="input" id="cidadeIndicado" name="cidadeIndicado" placeholder="Ex.: Curitiba / PR">
+            </div>
+            <div class="field full">
+              <label for="observacao">O que essa pessoa pretende comprar? <small>(opcional)</small></label>
+              <input class="input" id="observacao" name="observacao" placeholder="Ex.: carro, imóvel, reforma…">
+            </div>
+          </div>
+
+          <label class="form-note" style="display:flex;gap:10px;align-items:flex-start;margin-top:18px"><input type="checkbox" name="consentimento" required style="margin-top:3px"><span>Autorizo o contato pelo WhatsApp sobre essa indicação. Consulte a política de privacidade do site.</span></label>
+          <button class="btn btn-block" type="submit" style="margin-top:18px"><span>Enviar indicação</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <p class="form-status" id="formStatus" role="alert"></p>
+          <p class="form-note">Guarde o WhatsApp que você usar aqui: é com ele que você acessa o <a href="painel-indicador.html">painel de indicações e comissão</a>.</p>
+        </form>
+
+        <div class="form-card" id="sucessoCard" hidden style="margin-top:18px;text-align:center">
+          <h2 style="font-size:20px">Indicação enviada!</h2>
+          <p class="sub">Obrigada! Nosso time vai entrar em contato com a pessoa indicada em breve.</p>
+          <a class="btn btn-block" href="painel-indicador.html" style="margin-top:6px"><span>Ver meu painel de indicações</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Time Paula Batista · Empreenda com a Ademicon</p>
   </div>
-</section>
+</footer>
 
 <script>
 const API='https://fhfphlqrgtabkiqoywea.supabase.co/functions/v1/indicacao-consorcio-cadastro';

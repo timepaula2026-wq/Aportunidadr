@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Admin · Indicações de consórcio</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logo-pb.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="indicador-admin">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Time Paula Batista"><img src="assets/logo-pb.png" alt="Time Paula Batista" width="526" height="358"></a>
+    <span class="header-tag">Admin · <b>indicações de consórcio</b></span>
+  </div>
+</header>
+
+<main class="wrap" style="max-width:960px;padding-top:36px;padding-bottom:64px">
+  <form class="form-card" id="pinForm" novalidate style="max-width:420px;margin-bottom:28px">
+    <div class="field full">
+      <label for="pin">PIN de admin</label>
+      <input class="input" id="pin" name="pin" type="password" inputmode="numeric" required>
+      <p class="err">Digite o PIN.</p>
+    </div>
+    <button class="btn btn-block" type="submit" style="margin-top:14px"><span>Entrar</span></button>
+    <p class="form-status" id="pinStatus" role="alert"></p>
+  </form>
+
+  <div id="painel" hidden>
+    <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden">
+      <thead>
+        <tr style="background:var(--bg-warm);text-align:left">
+          <th style="padding:12px 14px;font-size:13px">Indicador</th>
+          <th style="padding:12px 14px;font-size:13px">Indicado</th>
+          <th style="padding:12px 14px;font-size:13px">Cidade / pretende</th>
+          <th style="padding:12px 14px;font-size:13px">Status</th>
+          <th style="padding:12px 14px;font-size:13px">Valor / comissão</th>
+          <th style="padding:12px 14px;font-size:13px">Ação</th>
+        </tr>
+      </thead>
+      <tbody id="linhas"></tbody>
+    </table>
+  </div>
+</main>
+
+<style>
+  td{padding:12px 14px;border-top:1px solid var(--line);font-size:14px;vertical-align:top}
+  .btn-sm2{padding:8px 12px;font-size:13.5px;border-radius:8px;background:var(--red);color:#fff;border:0;cursor:pointer}
+  .btn-sm2:hover{background:var(--red-dark)}
+  input.venda{width:110px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-size:13.5px}
+</style>
+
+<script>
+const API='https://fhfphlqrgtabkiqoywea.supabase.co/functions/v1/indicacao-consorcio-cadastro';
+let PIN='';
+const pinForm=document.getElementById('pinForm');
+const pinStatus=document.getElementById('pinStatus');
+const painel=document.getElementById('painel');
+const linhas=document.getElementById('linhas');
+function mostrarStatus(el,t){el.textContent=t;el.classList.add('show');}
+const moeda=(v)=>Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+
+async function carregar(){
+  const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'listar_admin',pin:PIN})});
+  const j=await r.json();
+  if(!r.ok){mostrarStatus(pinStatus,j.error||'PIN incorreto.');painel.hidden=true;return false;}
+  linhas.innerHTML='';
+  (j.indicacoes||[]).forEach(i=>{
+    const tr=document.createElement('tr');
+    const convertido=i.status==='convertido';
+    tr.innerHTML=
+      '<td><b>'+i.nome_indicador+'</b><br><span style="color:var(--muted)">'+i.whatsapp_indicador+'</span></td>'+
+      '<td><b>'+i.nome_indicado+'</b><br><span style="color:var(--muted)">'+i.whatsapp_indicado+'</span></td>'+
+      '<td>'+(i.cidade_indicado||'—')+'<br><span style="color:var(--muted)">'+(i.observacao||'')+'</span></td>'+
+      '<td>'+(convertido?'<b style="color:#17803D">Convertido</b>':i.status)+'</td>'+
+      '<td>'+(convertido?(moeda(i.valor_venda)+'<br><span style="color:var(--muted)">comissão '+moeda(i.comissao_valor)+'</span>'):'—')+'</td>'+
+      '<td>'+(convertido?'—':'<input class="venda" type="number" min="0" step="0.01" placeholder="Valor da venda" data-id="'+i.id+'"><button class="btn-sm2" data-marcar="'+i.id+'" style="margin-left:6px">Marcar vendido</button>')+'</td>';
+    linhas.appendChild(tr);
+  });
+  painel.hidden=false;
+  return true;
+}
+
+pinForm.addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  pinStatus.classList.remove('show');
+  PIN=document.getElementById('pin').value.trim();
+  await carregar();
+});
+
+linhas.addEventListener('click',async(e)=>{
+  const id=e.target.dataset && e.target.dataset.marcar;
+  if(!id) return;
+  const input=linhas.querySelector('input.venda[data-id="'+id+'"]');
+  const valorVenda=parseFloat(input.value);
+  if(!valorVenda || valorVenda<=0){alert('Informe o valor da venda.');return;}
+  e.target.disabled=true;e.target.textContent='Salvando…';
+  const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'marcar_convertido',pin:PIN,id,valorVenda})});
+  const j=await r.json();
+  if(!r.ok){alert(j.error||'Não foi possível salvar.');e.target.disabled=false;e.target.textContent='Marcar vendido';return;}
+  await carregar();
+});
+</script>
+</body>
+</html>

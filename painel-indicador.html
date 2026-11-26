@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meu painel de indicações · Time Paula Batista</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FAF6F2">
+<link rel="icon" href="assets/logo-pb.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="painel-indicador">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Time Paula Batista"><img src="assets/logo-pb.png" alt="Time Paula Batista" width="526" height="358"></a>
+    <a class="header-tag" href="indicador.html">Indicar <b>alguém novo</b></a>
+  </div>
+</header>
+
+<main class="wrap" style="max-width:720px;padding-top:36px;padding-bottom:64px">
+  <h1 style="font-size:clamp(24px,4vw,32px);margin-bottom:8px">Meu painel de indicações</h1>
+  <p class="sub" style="color:var(--muted);margin-bottom:24px">Digite o WhatsApp que você usou pra indicar e veja o status de cada indicação e sua comissão.</p>
+
+  <form class="form-card" id="buscaForm" novalidate style="margin-bottom:28px">
+    <div class="field full">
+      <label for="whatsapp">Seu WhatsApp</label>
+      <input class="input" id="whatsapp" name="whatsapp" type="tel" inputmode="tel" placeholder="(00) 00000-0000" required>
+      <p class="err">Digite um WhatsApp válido com DDD.</p>
+    </div>
+    <button class="btn btn-block" type="submit" style="margin-top:14px"><span>Ver minhas indicações</span></button>
+    <p class="form-status" id="formStatus" role="alert"></p>
+  </form>
+
+  <div id="resultado" hidden>
+    <div class="how" style="margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>
+        <h3 style="margin-bottom:4px">Comissão total (1% por venda)</h3>
+        <p style="color:var(--muted);font-size:14px;margin:0">Soma de todas as indicações já convertidas em venda.</p>
+      </div>
+      <strong id="totalComissao" style="font-size:28px;color:var(--red)">R$ 0,00</strong>
+    </div>
+    <div id="listaIndicacoes"></div>
+    <p id="vazio" hidden style="color:var(--muted);text-align:center;padding:24px 0">Você ainda não enviou nenhuma indicação com esse WhatsApp. <a href="indicador.html">Indicar agora</a>.</p>
+  </div>
+</main>
+
+<style>
+  .ind-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .ind-card b{display:block}
+  .ind-card span{font-size:13.5px;color:var(--muted)}
+  .ind-badge{font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:999px;white-space:nowrap}
+  .ind-badge.novo{background:#EFEAE4;color:var(--ink-2)}
+  .ind-badge.contato{background:#FFF3CF;color:#8A6A00}
+  .ind-badge.convertido{background:#E3F6E8;color:#17803D}
+</style>
+
+<script>
+const API='https://fhfphlqrgtabkiqoywea.supabase.co/functions/v1/indicacao-consorcio-cadastro';
+const form=document.getElementById('buscaForm');
+const statusEl=document.getElementById('formStatus');
+const btn=form.querySelector('button[type=submit]');
+const btnTexto=btn.querySelector('span');
+const resultadoEl=document.getElementById('resultado');
+const listaEl=document.getElementById('listaIndicacoes');
+const vazioEl=document.getElementById('vazio');
+const totalEl=document.getElementById('totalComissao');
+function mostrarStatus(t){statusEl.textContent=t;statusEl.classList.add('show');}
+const moeda=(v)=>Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const rotulos={novo:'Em análise',contato:'Em contato',convertido:'Venda realizada'};
+
+form.addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  statusEl.classList.remove('show');
+  resultadoEl.hidden=true;
+  const whatsapp=form.whatsapp.value;
+  btn.disabled=true;btnTexto.textContent='Buscando…';
+  try{
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'status',whatsapp})});
+    const j=await r.json();
+    if(!r.ok){mostrarStatus(j.error||'Não foi possível consultar agora.');return;}
+    const indicacoes=j.indicacoes||[];
+    totalEl.textContent=moeda(j.totalComissao);
+    listaEl.innerHTML='';
+    vazioEl.hidden=indicacoes.length>0;
+    indicacoes.forEach(i=>{
+      const badge=rotulos[i.status]||i.status||'Em análise';
+      const cls=i.status==='convertido'?'convertido':(i.status==='contato'?'contato':'novo');
+      const comissao=i.status==='convertido'?('Comissão: '+moeda(i.comissao_valor)):'';
+      const el=document.createElement('div');
+      el.className='ind-card';
+      el.innerHTML='<div><b>'+i.nome_indicado+'</b><span>Indicado(a) em '+new Date(i.created_at).toLocaleDateString('pt-BR')+(comissao?' · '+comissao:'')+'</span></div><span class="ind-badge '+cls+'">'+badge+'</span>';
+      listaEl.appendChild(el);
+    });
+    resultadoEl.hidden=false;
+  }catch(err){
+    mostrarStatus('Sem conexão agora. Tente novamente em instantes.');
+  }finally{
+    btn.disabled=false;btnTexto.textContent='Ver minhas indicações';
+  }
+});
+</script>
+</body>
+</html>
